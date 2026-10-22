@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="./style.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pen</title>
+  </head>
+  <body>
+    <!-- Noto Sans KR 폰트 -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- 1-1. rem vs em: 기준점 차이 (Root vs 자기 자신) -->
+    <div class="box">
+      <h3 class="title">1-1. rem vs em 비교 (여백과 크기의 비례 기준)</h3>
+      <p class="desc">
+        •
+        <strong>rem:</strong>
+        항상 최상위(html, 16px)를 기준으로 고정된 여백을 유지합니다.
+        <br />
+        •
+        <strong>em:</strong>
+        자기 자신의 font-size를 기준으로 삼기 때문에, 글자 크기가 커지면 버튼의
+        안쪽 여백(padding)도 같은 비율로 알아서 커집니다.
+      </p>
+
+      <div class="unit-demo">
+        <div class="btn-group">
+          <!-- 글자 크기만 다르게 준 버튼들: em 패딩 덕분에 비율이 완벽하게 유지됨 -->
+          <button class="btn-em sm">작은 버튼 (12px)</button>
+          <button class="btn-em md">기본 버튼 (16px)</button>
+          <button class="btn-em lg">큰 버튼 (24px)</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 1-2. ch와 lh: 콘텐츠(글자 폭과 줄 높이) 중심 단위 -->
+    <div class="box">
+      <h3 class="title">1-2. ch(글자 폭)와 lh(줄 높이)를 활용한 가독성 제어</h3>
+      <p class="desc">
+        •
+        <strong>ch:</strong>
+        한 줄의 최대 너비를
+        <code>45ch</code>
+        로 제한하여 화면이 넓어져도 눈이 피로하지 않게 만듭니다.
+        <br />
+        •
+        <strong>lh:</strong>
+        문단 간격을 정확히 한 줄 높이(
+        <code>1lh</code>
+        )만큼 띄우고, 제목 앞 아이콘의 크기를 줄 높이(
+        <code>1lh</code>
+        )에 정확히 맞춥니다.
+      </p>
+
+      <article class="prose-demo">
+        <h4>
+          <span class="icon"></span>
+          타이포그래피와 수직 리듬
+        </h4>
+        <p>
+          이 문단은 max-width: 45ch가 적용되어 있어 아무리 넓은 모니터에서
+          보더라도 한 줄에 영문/숫자 기준 약 45자 이상 넘어가지 않고 자연스럽게
+          줄바꿈됩니다.
+        </p>
+        <p>
+          또한 문단과 문단 사이의 아래쪽 여백(margin-bottom)에 1lh를 부여하여,
+          마치 노트 줄을 한 칸 비워둔 것처럼 정확한 수직 리듬을 형성합니다.
+        </p>
+      </article>
+    </div>
+
+    <!-- 1-3. vw, vh와 %: 뷰포트 기준 vs 부모 기준 -->
+    <div class="box">
+      <h3 class="title">1-3. vw / vh(브라우저 창 기준) vs %(부모 요소 기준)</h3>
+      <p class="desc">
+        브라우저 창 크기를 좌우로 조절해 보세요.
+        <code>vw</code>
+        를 사용한 타이틀은 창 너비에 비례하여 고무줄처럼 글자 크기가 변하며,
+        <code>%</code>
+        막대는 부모 박스의 너비를 기준으로 채워집니다.
+      </p>
+
+      <div class="viewport-demo">
+        <h2 class="fluid-title">FLUID POSTER (6vw)</h2>
+        <div class="percent-bar">부모 너비의 70% (width: 70%)</div>
+      </div>
+    </div>
+  </body>
+</html>

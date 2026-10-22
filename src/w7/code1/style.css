@@ -1,0 +1,165 @@
+/* =========================================
+   0. 공통 세팅 및 재활용 스타일 (1~3번 예제 공유)
+   ========================================= */
+html {
+  font-size: 16px; /* 1rem의 기준점 (1rem = 16px) */
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Noto Sans KR", sans-serif;
+}
+
+body {
+  padding: 1.5rem; /* 24px */
+  background-color: #f5f6f8;
+  color: #212529;
+}
+
+/* 섹션 공통 카드 박스 (CSS Nesting 적용) */
+.box {
+  background-color: #fff;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+
+  .title {
+    font-size: 1.125rem; /* 18px */
+    margin-bottom: 0.5rem;
+  }
+
+  .desc {
+    font-size: 0.875rem; /* 14px */
+    color: #495057;
+    margin-bottom: 1.25rem;
+    background-color: #f1f3f5;
+    padding: 0.75rem 1rem;
+    border-radius: 0.25rem;
+    line-height: 1.6;
+
+    code {
+      background-color: #e9ecef;
+      padding: 0.1rem 0.3rem;
+      border-radius: 0.2rem;
+      font-weight: 700;
+      color: #c92a2a;
+    }
+  }
+}
+
+/* =========================================
+   1-1. rem vs em 비교
+   ========================================= */
+.unit-demo {
+  padding: 1rem;
+  border: 1px dashed #ced4da;
+  border-radius: 0.5rem;
+
+  .btn-group {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem; /* 버튼 사이 간격은 최상위 기준인 1rem(16px)으로 일정하게 고정 */
+  }
+
+  .btn-em {
+    background-color: #3b5bdb;
+    color: #fff;
+    border: none;
+    font-weight: 700;
+    cursor: pointer;
+
+    /* 핵심: padding과 border-radius를 em으로 설정하여 자신의 font-size에 비례하도록 설계 */
+    padding: 0.6em 1.2em;
+    border-radius: 0.4em;
+
+    &.sm {
+      font-size: 0.75rem;
+    } /* 12px -> 패딩도 알아서 작아짐 */
+    &.md {
+      font-size: 1rem;
+    } /* 16px -> 기본 비율 */
+    &.lg {
+      font-size: 1.5rem;
+    } /* 24px -> 패딩도 알아서 큼직해짐 */
+  }
+}
+
+/* =========================================
+   1-2. ch와 lh 활용 (가독성 및 수직 리듬)
+   ========================================= */
+.prose-demo {
+  background-color: #f8f9fa;
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  line-height: 1.7; /* 현재 영역의 1lh 기준이 됨 */
+
+  h4 {
+    font-size: 1.25rem;
+    margin-bottom: 0.5lh; /* 줄 높이의 절반만큼 아래 여백 */
+    display: flex;
+    align-items: center;
+    gap: 0.5ch;
+
+    .icon {
+      display: inline-block;
+      /* 핵심: 아이콘의 가로/세로 크기를 현재 제목의 한 줄 높이(1lh)와 완벽히 일치시킴 */
+      width: 1lh;
+      height: 1lh;
+      background-color: #3b5bdb;
+      border-radius: 50%;
+    }
+  }
+
+  p {
+    /* 핵심 1: 한 줄의 길이가 45글자(0 기준)를 넘지 않도록 제한 */
+    max-width: 45ch;
+    font-size: 0.95rem;
+    color: #495057;
+
+    /* 핵심 2: 문단 사이 간격을 정확히 한 줄 높이(1lh)만큼 띄움 */
+    margin-bottom: 1lh;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+/* =========================================
+   1-3. vw / vh vs % 비교
+   ========================================= */
+.viewport-demo {
+  background-color: #212529;
+  color: #fff;
+  padding: 2rem;
+  border-radius: 0.5rem;
+  /* 뷰포트 높이(vh)의 최소 25%를 차지하도록 설정 */
+  min-height: 25vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1.5rem;
+
+  .fluid-title {
+    /* 핵심: 브라우저 창 가로 너비의 6% 크기로 글자가 실시간 확대/축소됨 */
+    font-size: 6vw;
+    font-weight: 900;
+    line-height: 1;
+    color: #fcc419;
+    letter-spacing: -0.03em;
+  }
+
+  .percent-bar {
+    /* 핵심: 브라우저 창이 아니라 부모(.viewport-demo)의 안쪽 너비 대비 70%를 차지함 */
+    width: 70%;
+    background-color: #3b5bdb;
+    padding: 0.75rem 1rem;
+    border-radius: 0.25rem;
+    font-size: 0.875rem;
+    font-weight: 700;
+  }
+}
